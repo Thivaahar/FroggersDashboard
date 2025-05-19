@@ -1,0 +1,72 @@
+﻿<html>
+<head>
+<title>Disk Utilization Report</title>
+<style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid black; padding: 8px; text-align: left; }
+    th { background-color: f2f2f2; }
+    .critical { background-color: red; color: white; }
+    .warning { background-color: yellow; color: black; }
+    .search-container { margin-bottom: 10px; }
+    .marquee-container { 
+       width: 100%; 
+       overflow: hidden; 
+        white-space: nowrap; 
+        background-color: 228B22;
+        color: fff; 
+        padding: 10px;
+         font-size: 16px;
+         font-weight: bold;
+            }
+    .marquee-text { 
+     display: inline-block; 
+      animation: marquee 10s linear infinite; 
+    }
+     @keyframes marquee {
+        from { transform: translateX(100%); }
+       to { transform: translateX(-100%); }
+         }
+
+          .marquee-container:hover .marquee-text {
+         animation-play-state: paused;
+       }
+
+</style>
+            <script>
+  function filterTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("diskTable");
+  tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) { 
+      td = tr[i].getElementsByTagName("td")[0]; // Only filtering Machine Name column
+      if (td) {
+          txtValue = td.textContent || td.innerText;
+          tr[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+      }       
+     }
+    }
+</script>
+</head>
+<body>
+   <div class="marquee-container">
+     <span class="marquee-text">This report consists of disk utilization above 70% and was generated on 2025-04-27 08:27:11</span>
+      </div>
+      <h2 style='text-align: center; color: green;font-weight: bold;font-size: 24pt !important'>Disk Utilization Report</h2>
+
+    <div class="search-container">
+   <label for="searchInput">Search Server:</label>
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Type to filter servers...">
+    </div>
+<table id="diskTable">
+<tr>
+<th>Machine Name</th>
+<th>Drive</th>
+<th>Used Space (GB)</th>
+<th>Free Space (GB)</th>
+<th>Utilization (%)</th>
+</tr><tr class='critical'><td>QN-AZQA-SQL-02</td><td>I:</td><td>251.66</td><td>4.32</td><td>98.31%</td></tr><tr class='critical'><td>QN-AZQA310-APP1</td><td>C:</td><td>115.51</td><td>11</td><td>91.31%</td></tr><tr class='critical'><td>QN-AZQA-SQL-10</td><td>J:</td><td>1864.65</td><td>183.33</td><td>91.05%</td></tr><tr class='critical'><td>QN-AZQA-SQL-10</td><td>K:</td><td>1859.31</td><td>188.68</td><td>90.79%</td></tr><tr class='critical'><td>QN-AZQA-TPT-07</td><td>C:</td><td>114.48</td><td>12.03</td><td>90.49%</td></tr><tr class='warning'><td>QN-AZQA307-APP1</td><td>C:</td><td>105.27</td><td>21.24</td><td>83.21%</td></tr><tr class='warning'><td>QN-AZQA-TPT-03</td><td>C:</td><td>102.45</td><td>24.06</td><td>80.98%</td></tr><tr class='warning'><td>QN-AZQA302-APP1</td><td>C:</td><td>101.85</td><td>24.66</td><td>80.51%</td></tr><tr class='warning'><td>QN-AZQA-SQL-02</td><td>E:</td><td>1599.65</td><td>448.35</td><td>78.11%</td></tr><tr class='warning'><td>QN-AZQA-SQL-02</td><td>H:</td><td>38.4</td><td>11.58</td><td>76.83%</td></tr><tr class='warning'><td>QN-AZQA-SQL-11</td><td>E:</td><td>778.04</td><td>245.94</td><td>75.98%</td></tr><tr class='warning'><td>QN-AZQA-SQL-07</td><td>G:</td><td>30.15</td><td>9.72</td><td>75.62%</td></tr><tr class='warning'><td>QN-AZQA303-APP1</td><td>C:</td><td>94.12</td><td>32.39</td><td>74.4%</td></tr><tr class='warning'><td>QN-AZQA-SQL-03</td><td>G:</td><td>36.91</td><td>13.07</td><td>73.84%</td></tr><tr class='warning'><td>QN-AZQA209-APP1</td><td>C:</td><td>92.67</td><td>33.85</td><td>73.25%</td></tr><tr class='warning'><td>QN-AZQA207-APP1</td><td>C:</td><td>92.38</td><td>34.13</td><td>73.02%</td></tr><tr class='warning'><td>QN-AZQA-SQL-01</td><td>E:</td><td>288.64</td><td>111.36</td><td>72.16%</td></tr><tr class='warning'><td>QN-AZQA-SQL-02</td><td>C:</td><td>91.1</td><td>35.41</td><td>72.01%</td></tr><tr class='warning'><td>QN-AZQA-SQL-07</td><td>E:</td><td>91.25</td><td>36.62</td><td>71.36%</td></tr><tr class='warning'><td>QN-AZQA-SQL-10</td><td>E:</td><td>1454.11</td><td>593.87</td><td>71%</td></tr><tr class='warning'><td>QN-AZQA-SQL-01</td><td>F:</td><td>35.35</td><td>14.65</td><td>70.71%</td></tr></table>
+</body>
+</html>
